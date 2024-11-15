@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - qa
+      - main
 
 jobs:
   build:
@@ -12,10 +12,22 @@ jobs:
       - name: Checkout main
         uses: actions/checkout@v3
 
-      - name: Scan repository for QA
-        uses: katalon-studio-samples/testops-sync-script-repo-action@main
-        with: 
-          testops-base-url: https://testops.qa.katalon.com
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          token: ${{ secrets.TOKEN }}
+      - name: Run Katalon Tests
+        run: |
+          # Set the project path
+          PROJECT_PATH="${{ github.workspace }}/katalon-sample-api-tests/web-service-tests.prj"
+          
+          # Run the Katalon command
+          katalonc -noSplash \
+            -runMode=console \
+            -projectPath="$PROJECT_PATH" \
+            -retry=0 \
+            -testSuitePath="Test Suites/web-service-tests - All Test Cases" \
+            -browserType="Web Service" \
+            -executionProfile="default" \
+            -apiKey="${{ secrets.PROJECT }}" \
+            --config \
+            -proxy.auth.option=NO_PROXY \
+            -proxy.system.option=NO_PROXY \
+            -proxy.system.applyToDesiredCapabilities=true \
+            -webui.autoUpdateDrivers=true
