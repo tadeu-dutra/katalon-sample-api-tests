@@ -12,22 +12,9 @@ jobs:
       - name: Checkout main
         uses: actions/checkout@v3
 
-      - name: Run Katalon Tests
-        run: |
-          # Set the project path
-          PROJECT_PATH="${{ github.workspace }}/katalon-sample-api-tests/web-service-tests.prj"
-          
-          # Run the Katalon command
-          katalonc -noSplash \
-            -runMode=console \
-            -projectPath="$PROJECT_PATH" \
-            -retry=0 \
-            -testSuitePath="Test Suites/web-service-tests - All Test Cases" \
-            -browserType="Web Service" \
-            -executionProfile="default" \
-            -apiKey="${{ secrets.PROJECT }}" \
-            --config \
-            -proxy.auth.option=NO_PROXY \
-            -proxy.system.option=NO_PROXY \
-            -proxy.system.applyToDesiredCapabilities=true \
-            -webui.autoUpdateDrivers=true
+      - name: Katalon Studio Github Action
+        uses: katalon-studio/katalon-studio-github-action@v2.1
+        with:
+          version: '9.7.2'
+          projectPath: '${{ github.workspace }}'
+          args: '-noSplash -retry=0 -browserType=Chrome -statusDelay=15 -testSuitePath="Test Suites/TS_RegressionTest" -apiKey= ${{ secrets.PROJECT }} --config -webui.autoUpdateDrivers=true'
