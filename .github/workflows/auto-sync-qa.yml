@@ -18,4 +18,4 @@ jobs:
           version: '9.7.2'
           #projectPath: '/home/runner/work/katalon-sample-api-tests'
           projectPath: '${{ github.workspace }}'
-          args: '-noSplash -retry=1 -browserType="Web Service" -executionProfile="default" -statusDelay=15 -testSuitePath="Test Suites/web-service-tests - All Test Cases" -apiKey="${{ secrets.PROJECT }}" --config -proxy.auth.option=NO_PROXY -proxy.system.option=NO_PROXY -proxy.system.applyToDesiredCapabilities=true -webui.autoUpdateDrivers=true'
+          args: '-noSplash -retry=1 -browserType="Web Service" -executionProfile="default" -statusDelay=15 -testSuitePath="Test Suites/web-service-tests - All Test Cases" -apiKey="${{ secrets.KATALON_API_KEY }}" --config -proxy.auth.option=NO_PROXY -proxy.system.option=NO_PROXY -proxy.system.applyToDesiredCapabilities=true -webui.autoUpdateDrivers=true'
