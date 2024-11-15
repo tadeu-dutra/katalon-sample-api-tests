@@ -16,5 +16,6 @@ jobs:
         uses: katalon-studio/katalon-studio-github-action@v2.1
         with:
           version: '9.7.2'
-          projectPath: '${{ github.workspace }}'
-          args: '-noSplash -runMode=console -retry=0 -browserType="Web Service" -executionProfile="default" -statusDelay=15 -testSuitePath="Test Suites/web-service-tests - All Test Cases" -apiKey= ${{ secrets.PROJECT }} --config -webui.autoUpdateDrivers=true'
+          projectPath: '/home/runner/work/katalon-sample-api-tests'
+          #projectPath: '${{ github.workspace }}'
+          args: '-noSplash -runMode=console -retry=0 -browserType="Web Service" -executionProfile="default" -statusDelay=15 -testSuitePath="Test Suites/web-service-tests - All Test Cases" -apiKey="${{ secrets.PROJECT }}" --config -webui.autoUpdateDrivers=true'
