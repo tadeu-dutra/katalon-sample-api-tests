@@ -17,4 +17,4 @@ jobs:
         with:
           version: '9.7.2'
           projectPath: '${{ github.workspace }}'
-          args: '-noSplash -retry=0 -browserType=Chrome -statusDelay=15 -testSuitePath="Test Suites/TS_RegressionTest" -apiKey= ${{ secrets.PROJECT }} --config -webui.autoUpdateDrivers=true'
+          args: '-noSplash -runMode=console -retry=0 -browserType="Web Service" -executionProfile="default" -statusDelay=15 -testSuitePath="Test Suites/web-service-tests - All Test Cases" -apiKey= ${{ secrets.PROJECT }} --config -webui.autoUpdateDrivers=true'
